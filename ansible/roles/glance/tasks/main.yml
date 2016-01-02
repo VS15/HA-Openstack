@@ -11,8 +11,11 @@
     - { source: 'glance-registry.conf.j2', dest: 'glance-registry.conf' }
     - { source: 'glance-cache.conf.j2', dest: 'glance-cache.conf' }
 
+- name: Test mysql connection 
+  shell: 'sudo nc -zv -w 2 192.168.1.32 3306'
+
 - name: Sync the DB 
-  shell: 'sudo glance-manage db_sync'
+  shell: "sudo glance-manage db_sync"
   
 - name: Restart and Enable Glance Service 
   service: name={{ item }} state=restarted enabled=yes
@@ -20,9 +23,9 @@
     - glance-api
     - glance-registry
 
-- name: Download Cirros image
-  get_url: url=http://download.cirros-cloud.net/0.3.1/cirros-0.3.1-x86_64-disk.img  dest=/root/cirros-0.3.1-x86_64-disk.img
-  ignore_errors: yes
+#- name: Download Cirros image
+#  get_url: url=http://download.cirros-cloud.net/0.3.1/cirros-0.3.1-x86_64-disk.img  dest=/root/cirros-0.3.1-x86_64-disk.img
+#  ignore_errors: yes
 
 - name: Add Cirros Image
   glance_image: login_username=glance

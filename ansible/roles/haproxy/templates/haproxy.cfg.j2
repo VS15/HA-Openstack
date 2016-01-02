@@ -22,11 +22,10 @@ defaults
 	errorfile 503 /etc/haproxy/errors/503.http
 	errorfile 504 /etc/haproxy/errors/504.http
 
-listen stats {{ ansible_eth1.ipv4.address }}:777
+listen stats 192.168.1.32:777
         mode http
         stats enable
         stats uri /stats
-        stats realm HAProxy\ Statistics
         stats auth admin:password
 
 listen galera 192.168.1.32:3306

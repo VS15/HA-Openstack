@@ -15,11 +15,12 @@
     - { source: 'memcached.conf.j2', dest: '/etc/memcached.conf' }
     - { source: 'local_settings.py.j2', dest: '/etc/openstack-dashboard/local_settings.py' }
 
-- name: Change mode on the file
-  file: path=/etc/openstack-dashboard/local_settings.py mode=777 owner=nova
-  
 - name: Restart and Enable services
   service: name={{ item }} state=restarted enabled=yes
   with_items: 
     - apache2
     - memcached
+
+- name: Clean up local
+  file: path=/vagrant/ssl state=absent
+  when: ansible_hostname == "icehouse2" 

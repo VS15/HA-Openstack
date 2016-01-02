@@ -7,6 +7,9 @@
 
 - name: Push Cinder configuration files
   template: src=cinder.conf.j2 dest=/etc/cinder/cinder.conf 
+
+- name: Test mysql connection
+  shell: 'sudo nc -zv -w 2 192.168.1.32 3306'
   
 - name: Sync cinder DB 
   shell: 'cinder-manage db sync'

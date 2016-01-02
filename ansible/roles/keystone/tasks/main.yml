@@ -54,9 +54,9 @@
   shell: sudo  nc -zv -w 2 192.168.1.32 35357
   when: ansible_hostname == "icehouse1"
 
-- name: Execute the script
-  shell: 'sudo /root/keystone_populate.sh'
-  when: ansible_hostname == "icehouse1"
+#- name: Execute the script
+#  shell: 'sudo /root/keystone_populate.sh'
+#  when: ansible_hostname == "icehouse1"
 
 - name: Restart Keystone Service on NODE1
   service: name=keystone state=restarted enabled=yes

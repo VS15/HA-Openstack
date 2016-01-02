@@ -50,11 +50,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     icehouse2.vm.provision "shell", path: "ansiblestrap.sh"
     icehouse2.vm.provision :shell, inline: 'ansible-playbook /vagrant/ansible/ha-openstack.yml -c local -v'
   end
-  config.vm.define :icehousecompute1 do |icehousecompute1|
-    icehousecompute1.vm.network "private_network", ip: "192.168.1.45"
-    icehousecompute1.vm.hostname = "icehousecompute1"
-    icehousecompute1.vm.provision "shell", path: "ansiblestrap.sh"
-#    icehousecompute1.vm.provision :shell, inline: 'ansible-playbook /vagrant/ansible/ha-compute.yml -c local -v'
+  config.vm.define :computenode1 do |computenode1|
+    computenode1.vm.network "private_network", ip: "192.168.1.45"
+    computenode1.vm.hostname = "computenode1"
+    computenode1.vm.provision "shell", path: "ansiblestrap.sh"
+#    computenode1.vm.provision :shell, inline: 'ansible-playbook /vagrant/ansible/ha-compute.yml -c local -v'
   end
   if Vagrant.has_plugin?("vagrant-cachier")
     config.cache.scope = :box
