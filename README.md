@@ -62,10 +62,7 @@ Services: <o:p></o:p></span></b></p>
 - Openstack Services configured to be accessible through the VIP 192.168.1.32<o:p></o:p></span></p>
 
 <p class=MsoNormal style='text-align:justify'><b style='mso-bidi-font-weight:
-normal'><span style='font-family:"Times New Roman"'><o:p>&nbsp;</o:p></span></b></p>
-
-<p class=MsoNormal style='text-align:justify'><b style='mso-bidi-font-weight:
-normal'><span style='font-family:"Times New Roman"'>Back tier Ð Database
+normal'><span style='font-family:"Times New Roman"'>Back tier: Database
 cluster:<o:p></o:p></span></b></p>
 
 <p class=MsoNormal style='text-align:justify'><span style='font-family:"Times New Roman"'>192.168.1.33
@@ -73,8 +70,6 @@ cluster:<o:p></o:p></span></b></p>
 
 <p class=MsoNormal style='text-align:justify'><span style='font-family:"Times New Roman"'>192.168.1.34
 - MariaDb installation with asynchronous replication by Galera<o:p></o:p></span></p>
-
-<p class=MsoNormal style='text-align:justify'><span style='font-family:"Times New Roman"'><o:p>&nbsp;</o:p></span></p>
 
 <p class=MsoNormal style='text-align:justify'><span style='font-family:"Times New Roman"'>Middle
 tier boxes are running core Openstack Services: <o:p></o:p></span></p>
