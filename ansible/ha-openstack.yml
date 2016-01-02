@@ -1,0 +1,15 @@
+---
+- name: Ansible Playbook for HA Kyestone and Rabbit MQ
+  hosts: localhost
+  remote_user: vagrant
+  sudo: yes
+  gather_facts: yes
+  
+  roles:
+    - rabbitmq
+    - keystone
+    - glance
+    - cinder
+    - nova
+    - horizon
+    

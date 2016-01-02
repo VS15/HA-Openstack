@@ -1,0 +1,27 @@
+# This file describes the network interfaces available on your system
+# and how to activate them. For more information, see interfaces(5).
+
+# The loopback network interface
+auto lo
+iface lo inet loopback
+
+# The primary network interface
+auto eth0
+iface eth0 inet static
+address 192.168.1.45
+netmask 255.255.255.0
+gateway 192.168.1.1
+dns-search mydomain.com
+dns-nameservers 192.168.1.253 192.168.1.252
+
+# This is an autoconfigured IPv6 interface
+iface eth0 inet6 auto
+
+auto eth1
+iface eth1 inet manual
+
+auto br100
+iface br100 inet manual
+up ip link $IFACE promisc on
+up ip link eth1 promisc on
+bridge_ports eth1

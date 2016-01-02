@@ -1,0 +1,89 @@
+- name: install python properties
+  apt: name=python-software-properties state=present
+
+- name: install systems tools
+  apt: name=software-properties-common  state=present
+
+- name: add key
+  shell: 'sudo apt-key adv --recv-keys --keyserver hkp://keyserver.ubuntu.com:80 0xcbcb082a1bb943db'
+
+- name: add repo
+  apt_repository: repo='deb http://mariadb.nethub.com.hk/repo/5.5/ubuntu trusty main'
+
+- name: update repo
+  apt: update_cache=yes
+
+- name: Install mariadb-galera-server
+  apt: name=mariadb-galera-server state=present
+
+- name: Install galera
+  apt: name=galera state=present
+
+- name: Push galera conf file
+  template: src=cluster.cnf.j2 dest=/etc/mysql/conf.d/cluster.cnf owner=root mode=644
+
+- name: Comment out bind address
+  lineinfile: dest=/etc/mysql/my.cnf regexp='^bind-address' line='#bind-address = 127.0.0.1'
+
+- name: Stop mysql service on both nodes
+  service: name=mysql state=stopped enabled=yes
+
+- name: Copy debian configfile
+  file: src=/etc/mysql/debian.cnf dest=/vagrant/debian.cnf
+  when: ansible_hostname == 'mysql1'
+
+- name: Copy debian file from source to node2
+  file: src=/vagrant/debian.cnf dest=/etc/mysql/debian.cnf force=yes owner=root mode=600
+  when: ansible_hostname == 'mysql2'
+
+- name: Start mysql galera
+  shell: sudo service mysql start --wsrep-new-cluster
+  when: ansible_hostname == 'mysql1'
+
+- name: Install python pip
+  apt: pkg=python-pip state=installed
+
+- name: Install Python-mysqld
+  apt: pkg=python-mysqldb state=installed
+
+- name: Start mysql client
+  service: name=mysql state=started
+  when: ansible_hostname == 'mysql2'
+
+#Start MYSQL DB configuration
+
+- name: Insert user for haproxy1
+  mysql_user: name=haproxy host=192.168.1.30 password='' priv=*.*:ALL,GRANT state=present
+  
+- name: Insert user for haproxy2
+  mysql_user: name=haproxy host=192.168.1.31 password='' priv=*.*:ALL,GRANT state=present
+
+- name: Insert user for keystone
+  mysql_user: name=keystone host='' password='Service123' priv=*.*:ALL,GRANT state=present
+
+- name: Insert user for glance
+  mysql_user: name=glance host='' password='Service123' priv=*.*:ALL,GRANT state=present
+
+- name: Insert user for nova
+  mysql_user: name=nova host='' password='Service123' priv=*.*:ALL,GRANT state=present
+
+- name: Insert user for cinder
+  mysql_user: name=cinder host='' password='Service123' priv=*.*:ALL,GRANT state=present
+
+- name: Create Keystone DB
+  mysql_db: name=keystone state=present
+  tags: create_keystonedb
+
+- name: Create cinder  DB
+  mysql_db: name=cinder state=present
+  tags: create_cinderdb
+
+- name: Create Glance DB
+  mysql_db: name=glance collation=utf8_general_ci encoding=utf8 state=present
+  tags: create_glancedb
+
+- name: Create Nova DB
+  mysql_db: name=nova state=present
+  tags: create_novadb
+
+ 

@@ -1,0 +1,27 @@
+- name: Installing NOVA packages
+  apt: name={{ item }} state=present
+  with_items: 
+    - nova-api
+    - nova-cert
+    - nova-conductor
+    - nova-consoleauth
+    - nova-novncproxy
+    - nova-scheduler
+    - python-novaclient
+
+- name: Push Nova Config file
+  template: src=nova.conf.j2 dest=/etc/nova/nova.conf
+  tags: Pushing_nova
+
+- name: Syncup Nova DB
+  shell: 'sudo nova-manage db sync'
+
+- name: Restart and enabled nova services
+  service: name={{ item }} state=restarted enabled=yes
+  with_items: 
+    - nova-api
+    - nova-cert
+    - nova-conductor
+    - nova-consoleauth
+    - nova-novncproxy
+    - nova-scheduler

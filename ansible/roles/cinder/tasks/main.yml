@@ -1,0 +1,19 @@
+- name: Install Cinder
+  apt: name={{ item }} state=present 
+  with_items:
+    - cinder-api
+    - cinder-scheduler
+    - cinder-volume
+
+- name: Push Cinder configuration files
+  template: src=cinder.conf.j2 dest=/etc/cinder/cinder.conf 
+  
+- name: Sync cinder DB 
+  shell: 'cinder-manage db sync'
+
+- name: Restart cinder services
+  service: name={{ item }} state=restarted enabled=yes
+  with_items: 
+    - cinder-api
+    - cinder-scheduler
+    - cinder-volume

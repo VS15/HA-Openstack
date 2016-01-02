@@ -1,0 +1,35 @@
+- name: Pushing /etc/hosts
+  lineinfile: dest=/etc/hosts insertafter='icehouse1' line='192.168.1.36  icehouse2'
+  when: ansible_hostname == "icehouse1"
+
+- name: Pushing /etc/hosts for node 2
+  lineinfile: dest=/etc/hosts insertafter='icehouse2' line='192.168.1.35  icehouse1'
+  when: ansible_hostname == "icehouse2"
+
+- name: Install RabbitMQ
+  apt: name={{ item }} state=installed
+  with_items:
+      - ntp
+      - rabbitmq-server
+
+- name: Make sure service stoppped 
+  service: name=rabbitmq-server state=stopped enabled=yes
+
+- name: Copy the erland cookie
+  shell: 'sudo cp /var/lib/rabbitmq/.erlang.cookie /vagrant/.erlang.cookie; sudo chmod 666 /vagrant/.erlang.cookie'
+  when: ansible_hostname == "icehouse1"
+
+- name: Copy the erland cookie
+  shell: sudo mv /vagrant/.erlang.cookie /var/lib/rabbitmq/.erlang.cookie;sudo chmod 400 /var/lib/rabbitmq/.erlang.cookie; sudo chown rabbitmq:rabbitmq /var/lib/rabbitmq/.erlang.cookie
+  when: ansible_hostname == "icehouse2"
+
+- name: service rabbitmq-server start
+  service: name=rabbitmq-server state=restarted
+
+- name: Form MQ cluster
+  shell: 'rabbitmqctl stop_app; rabbitmqctl join_cluster rabbit@icehouse1; rabbitmqctl start_app; rabbitmqctl cluster_status'
+  register: cluster_status
+  when: ansible_hostname == "icehouse2"
+
+- name: Print cluster status
+  debug: var=cluster_status.stdout_lines

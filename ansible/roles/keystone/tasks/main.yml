@@ -1,0 +1,63 @@
+- name: Install keystone packages
+  apt: name={{ item }} state=present
+  with_items:
+      - keystone
+      - python-mysqldb
+
+- name: Push keystone config
+  template: src=keystone.conf.j2 dest=/etc/keystone/keystone.conf mode=644 owner=keystone
+
+- name: Restart keystone service 
+  service: name=keystone state=restarted enabled=yes
+  when: ansible_hostname == "icehouse1"
+
+- name: Syncs the service
+  shell: sudo keystone-manage db_sync
+  when: ansible_hostname == "icehouse1"
+  
+- name: Sync up the cluster TLS cert
+  shell: sudo cp -R /etc/keystone/ssl /vagrant/
+  when: ansible_hostname == "icehouse1"
+  
+- name: Sync up the cluster2 TLS cert
+  shell: sudo cp -R /vagrant/ssl /etc/keystone/
+  when: ansible_hostname == "icehouse2"
+
+- name: Restart Keystone Service on NODE2
+  service: name=keystone state=restarted enabled=yes
+  when: ansible_hostname == "icehouse2"
+
+#- name: Insert lines into keystone.conf
+#  lineinfile:  dest=/etc/keystone/keystone.conf insertafter='{{ item.after }}' line='{{ item.line }}'
+#  with_items:
+#    - { after: "^\[DEFAULT\]", line: 'admin_token=ADMIN123' }
+#    - { after: '^#rabbit_host', line: 'rabbit_hosts=192.168.1.35:5672,192.168.1.36:5672' }
+#    - { after: '^database', line: 'connection = mysql://keystone:Service123@192.168.1.32/keystone' }
+
+- name: Push the keystone script
+  copy: src=keystone_populate.sh dest=/root/keystone_populate.sh mode=775 owner=root
+  
+- name: Test connection
+  shell: sudo  nc -zv -w 2 192.168.1.32 35357
+ 
+- name: Execute the script 
+  shell: 'sudo /root/keystone_populate.sh'
+  when: ansible_hostname == "icehouse2"
+  
+- name: Push credentials
+  copy: src=creds.rc dest=/root/creds.rc mode=664 owner=root
+
+- name: Insert autosource 
+  lineinfile: dest=/root/.bashrc line="source /root/creds.rc"
+
+- name: Test connection
+  shell: sudo  nc -zv -w 2 192.168.1.32 35357
+  when: ansible_hostname == "icehouse1"
+
+- name: Execute the script
+  shell: 'sudo /root/keystone_populate.sh'
+  when: ansible_hostname == "icehouse1"
+
+- name: Restart Keystone Service on NODE1
+  service: name=keystone state=restarted enabled=yes
+  when: ansible_hostname == "icehouse1"

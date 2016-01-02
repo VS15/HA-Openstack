@@ -1,0 +1,9 @@
+---
+- name: Ansible playbook for HA-MYSQL cluster
+  hosts: localhost
+  remote_user: vagrant
+  sudo: yes
+  gather_facts: yes
+
+  roles: 
+     - mysql

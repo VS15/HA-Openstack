@@ -1,0 +1,36 @@
+[DEFAULT]
+dhcpbridge_flagfile=/etc/nova/nova.conf
+dhcpbridge=/usr/bin/nova-dhcpbridge
+logdir=/var/log/nova
+state_path=/var/lib/nova
+lock_path=/var/lock/nova
+force_dhcp_release=True
+iscsi_helper=tgtadm
+libvirt_use_virtio_for_bridges=True
+connection_type=libvirt
+root_helper=sudo nova-rootwrap /etc/nova/rootwrap.conf
+verbose=True
+ec2_private_dns_show_ip=True
+api_paste_config=/etc/nova/api-paste.ini
+volumes_path=/var/lib/nova/volumes
+enabled_apis=ec2,osapi_compute,metadata
+
+rpc_backend = rabbit
+rabbit_hosts = 192.168.1.35,192.168.1.36
+my_ip = {{ ansible_eth1.ipv4.address }}
+
+vncserver_listen = {{ ansible_eth1.ipv4.address }}
+vncserver_proxyclient_address = 192.168.1.32
+auth_strategy = keystone
+
+[database]
+connection = mysql://nova:Service123@192.168.1.32/nova
+
+[keystone_authtoken]
+auth_uri = http://192.168.1.32:5000
+auth_host = 192.168.1.32
+auth_port = 35357
+auth_protocol = http
+admin_tenant_name = service
+admin_user = nova
+admin_password = Service123

@@ -1,0 +1,11 @@
+---
+- name: Ansible Site Playbook
+  hosts: localhost
+  remote_user: vagrant
+  sudo: yes
+  gather_facts: yes
+
+  roles: 
+     - keepalived 
+     - haproxy 
+

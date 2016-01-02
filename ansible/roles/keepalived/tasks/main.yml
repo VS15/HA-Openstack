@@ -1,0 +1,26 @@
+- name: Tune up sysctl.conf file 
+  lineinfile: 
+    dest: /etc/sysctl.conf 
+    line: "net.ipv4.ip_nonlocal_bind=1"
+  tags: sysctl
+
+- name: Apply system settings
+  shell: sysctl -p
+  tags: sysctl_push
+
+- name: Check if OS is up to date
+  apt: update_cache=yes
+  tags: update_OS
+
+- name: Install keepalived 
+  apt: name=keepalived state=latest
+  tags: Install_keepalived 
+
+
+- name: Keepalived config push
+  template: src=keepalived.conf.j2 dest=/etc/keepalived/keepalived.conf force=yes owner=root mode=664
+  tags: Config push
+
+- name: restart keepalived
+  service: name=keepalived state=restarted enabled=yes
+

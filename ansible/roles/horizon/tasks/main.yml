@@ -1,0 +1,25 @@
+- name: Installing Horizon
+  apt: name={{ item }} state=installed
+  with_items:
+    - apache2
+    - memcached
+    - libapache2-mod-wsgi
+    - openstack-dashboard
+   
+- name: Remove standard HZ package
+  shell: 'sudo apt-get remove --purge openstack-dashboard-ubuntu-theme -y'
+
+- name: Push HZ config file
+  template: src={{ item.source }} dest={{ item.dest }} 
+  with_items:
+    - { source: 'memcached.conf.j2', dest: '/etc/memcached.conf' }
+    - { source: 'local_settings.py.j2', dest: '/etc/openstack-dashboard/local_settings.py' }
+
+- name: Change mode on the file
+  file: path=/etc/openstack-dashboard/local_settings.py mode=777 owner=nova
+  
+- name: Restart and Enable services
+  service: name={{ item }} state=restarted enabled=yes
+  with_items: 
+    - apache2
+    - memcached
