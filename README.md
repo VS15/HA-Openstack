@@ -40,7 +40,7 @@ normal'>./start.sh</b><o:p></o:p></span></p>
 normal'><span style='font-family:"Times New Roman"'>Architecture Summary: <o:p></o:p></span></b></p>
 
 <p class=MsoNormal style='text-align:justify'><b style='mso-bidi-font-weight:
-normal'><span style='font-family:"Times New Roman"'>Front tier: LTMs with
+normal'><span style='font-family:"Times New Roman"'>Front tier - LTMs with
 failover capability:<o:p></o:p></span></b></p>
 <p class=MsoNormal style='text-align:justify'><span style='font-family:"Times New Roman"'>192.168.1.30
 - LTM based on HAPROXY 1.5 Round Robin <o:p></o:p></span></p>
@@ -52,7 +52,7 @@ style='mso-spacerun:yes'>&nbsp; </span>Round</span> Robin <o:p></o:p></span></p>
 normal'>Keepalived</b>. The VIP is used by all Openstack services.<o:p></o:p></span></p>
 
 <p class=MsoNormal style='text-align:justify'><b style='mso-bidi-font-weight:
-normal'><span style='font-family:"Times New Roman"'>Middle tier: Openstack
+normal'><span style='font-family:"Times New Roman"'>Middle tier - Openstack
 Services: <o:p></o:p></span></b></p>
 
 <p class=MsoNormal style='text-align:justify'><span style='font-family:"Times New Roman"'>192.168.1.35
@@ -62,7 +62,7 @@ Services: <o:p></o:p></span></b></p>
 - Openstack Services configured to be accessible through the VIP 192.168.1.32<o:p></o:p></span></p>
 
 <p class=MsoNormal style='text-align:justify'><b style='mso-bidi-font-weight:
-normal'><span style='font-family:"Times New Roman"'>Back tier: Database
+normal'><span style='font-family:"Times New Roman"'>Back tier - Database
 cluster:<o:p></o:p></span></b></p>
 
 <p class=MsoNormal style='text-align:justify'><span style='font-family:"Times New Roman"'>192.168.1.33
