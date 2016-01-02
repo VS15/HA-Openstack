@@ -33,6 +33,9 @@ href="https://www.vagrantup.com/downloads.html">https://www.vagrantup.com/downlo
 <p class=MsoNormal style='text-align:justify'><span style='font-family:"Times New Roman"'><a
 href="https://www.virtualbox.org/wiki/Downloads">https://www.virtualbox.org/wiki/Downloads</a><o:p></o:p></span></p>
 
+<p class=MsoNormal style='text-align:justify'><span style='font-family:"Times New Roman"'><a
+href="git clone https://github.com/VS15/haopenstack">https://www.virtualbox.org/wiki/Downloads</a><o:p></o:p></span></p>
+
 <p class=MsoNormal style='text-align:justify'><span style='font-family:"Times New Roman"'>The
 rest will be done automatically once you run <b style='mso-bidi-font-weight:
 normal'>./start.sh</b><o:p></o:p></span></p>
