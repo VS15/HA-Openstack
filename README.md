@@ -36,30 +36,23 @@ href="https://www.virtualbox.org/wiki/Downloads">https://www.virtualbox.org/wiki
 <p class=MsoNormal style='text-align:justify'><span style='font-family:"Times New Roman"'>The
 rest will be done automatically once you run <b style='mso-bidi-font-weight:
 normal'>./start.sh</b><o:p></o:p></span></p>
-
+<p class=MsoNormal style='text-align:justify'><b style='mso-bidi-font-weight:
 normal'><span style='font-family:"Times New Roman"'>Architecture summary: <o:p></o:p></span></b></p>
 
-<p class=MsoNormal style='text-align:justify'><span style='font-family:"Times New Roman"'><o:p>&nbsp;</o:p></span></p>
-
 <p class=MsoNormal style='text-align:justify'><b style='mso-bidi-font-weight:
-normal'><span style='font-family:"Times New Roman"'>Front tier Ð LTMs with
+normal'><span style='font-family:"Times New Roman"'>Front tier: LTMs with
 failover capability:<o:p></o:p></span></b></p>
-
 <p class=MsoNormal style='text-align:justify'><span style='font-family:"Times New Roman"'>192.168.1.30
 - LTM based on HAPROXY 1.5 Round Robin <o:p></o:p></span></p>
-
 <p class=MsoNormal style='text-align:justify'><span style='font-family:"Times New Roman"'>192.168.1.31
 - LTM based on HAPROXY <span class=GramE>1.5<span
 style='mso-spacerun:yes'>&nbsp; </span>Round</span> Robin <o:p></o:p></span></p>
-
 <p class=MsoNormal style='text-align:justify'><span style='font-family:"Times New Roman"'>192.168.1.32
 - VIP in front of the HAPROXY LTMs managed by <b style='mso-bidi-font-weight:
 normal'>Keepalived</b>. The VIP is used by all Openstack services.<o:p></o:p></span></p>
 
-<p class=MsoNormal style='text-align:justify'><span style='font-family:"Times New Roman"'><o:p>&nbsp;</o:p></span></p>
-
 <p class=MsoNormal style='text-align:justify'><b style='mso-bidi-font-weight:
-normal'><span style='font-family:"Times New Roman"'>Middle tier Ð Openstack
+normal'><span style='font-family:"Times New Roman"'>Middle tier: Openstack
 Services: <o:p></o:p></span></b></p>
 
 <p class=MsoNormal style='text-align:justify'><span style='font-family:"Times New Roman"'>192.168.1.35
