@@ -37,7 +37,7 @@ href="https://www.virtualbox.org/wiki/Downloads">https://www.virtualbox.org/wiki
 rest will be done automatically once you run <b style='mso-bidi-font-weight:
 normal'>./start.sh</b><o:p></o:p></span></p>
 <p class=MsoNormal style='text-align:justify'><b style='mso-bidi-font-weight:
-normal'><span style='font-family:"Times New Roman"'>Architecture summary: <o:p></o:p></span></b></p>
+normal'><span style='font-family:"Times New Roman"'>Architecture Summary: <o:p></o:p></span></b></p>
 
 <p class=MsoNormal style='text-align:justify'><b style='mso-bidi-font-weight:
 normal'><span style='font-family:"Times New Roman"'>Front tier: LTMs with
