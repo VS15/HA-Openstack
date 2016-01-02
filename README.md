@@ -27,8 +27,6 @@ need to have vagrant, virtual box installed on your system.) In ideal
 conditions it should take less than 15 minutes for deployment, sometimes it
 takes longer depending on the multiple factors.)<o:p></o:p></span></p>
 
-<p class=MsoNormal style='text-align:justify'><span style='font-family:"Times New Roman"'><o:p>&nbsp;</o:p></span></p>
-
 <p class=MsoNormal style='text-align:justify'><span style='font-family:"Times New Roman"'><a
 href="https://www.vagrantup.com/downloads.html">https://www.vagrantup.com/downloads.html</a><o:p></o:p></span></p>
 
