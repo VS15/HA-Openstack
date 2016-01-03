@@ -91,7 +91,7 @@ normal'><span style='font-family:"Times New Roman"'>- nova<o:p></o:p></span></b>
 
 <p class=MsoNormal style='text-align:justify'><b style='mso-bidi-font-weight:
 normal'><span style='font-family:"Times New Roman"'>- cinder<o:p></o:p></span></b></p>
-
+* Once deployed you can navigate your browser to 192.168.1.32:777/stats (admin/password) - the load balancer stats will show you all the components that are up
 </div>
 
 </body>
