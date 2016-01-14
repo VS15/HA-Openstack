@@ -7,8 +7,7 @@
 <div class=WordSection1>
 
 <p class=MsoNormal style='text-align:justify'><b style='mso-bidi-font-weight:
-normal'><span style='font-family:"Times New Roman"'>High Availability Openstack
-Cluster</span></b><span style='font-family:"Times New Roman"'>. This project is
+normal'><span style='font-family:"Times New Roman"'>Auto-deployment and Configuration of High Availability Openstack Cluster</span></b><span style='font-family:"Times New Roman"'>. This project is
 using the latest <b style='mso-bidi-font-weight:normal'>DevOps</b> tools such
 as <b style='mso-bidi-font-weight:normal'>Vagrant</b>, <b style='mso-bidi-font-weight:
 normal'>Ansible and other open source solutions</b>. It uses the best practices
