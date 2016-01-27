@@ -12,4 +12,4 @@
     - cinder
     - nova
     - horizon
-    
+#Deployment based on roles    
