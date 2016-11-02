@@ -8,7 +8,7 @@
 
 <p class=MsoNormal style='text-align:justify'><b style='mso-bidi-font-weight:
 normal'><span style='font-family:"Times New Roman"'>Auto-deployment and Configuration of High Availability Openstack Cluster</span></b><span style='font-family:"Times New Roman"'>. This project is
-using the latest <b style='mso-bidi-font-weight:normal'>DevOps</b> tools such
+using the latest <b style='mso-bidi-font-weight:normal'>DevOps</b> frameworks such
 as <b style='mso-bidi-font-weight:normal'>Vagrant</b>, <b style='mso-bidi-font-weight:
 normal'>Ansible, HAPROXY, Galera and other open source solutions</b>. It uses the best practices
 for </span><span style='font-family:"Times New Roman";mso-fareast-font-family:
